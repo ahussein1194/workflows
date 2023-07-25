@@ -1,0 +1,19 @@
+pipeline {
+  agent {
+      label 'lxplus'
+  }
+  stages {
+    stage('version') {
+      steps {
+        sh 'python3 --version'
+      }
+    }
+    stage('hello') {
+      steps {
+	dir('python1') {
+        sh 'python3 hello.py'
+        }
+      }
+    }
+  }
+}
