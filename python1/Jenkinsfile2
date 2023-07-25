@@ -1,0 +1,22 @@
+pipeline {
+  agent any
+  stages {
+    stage('version') {
+      steps {
+        sh 'python3 --version'
+      }
+    }
+    stage('version') {
+      steps {
+        sh 'mkdir new-dir'
+      }
+    }
+    stage('hello') {
+      steps {
+	dir('python1') {
+        sh 'python3 hello.py'
+        }
+      }
+    }
+  }
+}
