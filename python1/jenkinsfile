@@ -1,0 +1,13 @@
+/* Requires the Docker Pipeline plugin */
+pipeline {
+    agent {
+        label 'python'
+    }
+    stages {
+        stage('Run Python Script') {
+            steps {
+                sh 'python3 myScript.py'
+            }
+        }
+    }
+}
