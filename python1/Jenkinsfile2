@@ -6,7 +6,7 @@ pipeline {
         sh 'python3 --version'
       }
     }
-    stage('version') {
+    stage('create-dir') {
       steps {
         sh 'mkdir new-dir'
       }
