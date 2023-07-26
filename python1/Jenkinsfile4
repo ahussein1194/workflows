@@ -6,11 +6,6 @@ pipeline {
         sh 'python3 --version'
       }
     }
-    stage('PWD') {
-      steps {
-        sh 'pwd'
-      }
-    }
     stage('hello') {
       steps {
 	dir('python1') {
