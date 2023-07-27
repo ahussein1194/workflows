@@ -11,7 +11,7 @@ pipeline {
     stage('hello') {
       steps {
 	dir('python1') {
-        'python hello.py'
+        sh 'python hello.py'
         }
       }
     }
