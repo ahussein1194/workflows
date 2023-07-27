@@ -1,0 +1,18 @@
+pipeline {
+  agent {
+      label 'agent1'
+  }
+    stage('PWD') {
+      steps {
+        sh 'pwd'
+      }
+    }
+    stage('hello') {
+      steps {
+	dir('python1') {
+        sh 'python3 hello.py'
+        }
+      }
+    }
+  }
+}
