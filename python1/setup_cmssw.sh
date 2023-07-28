@@ -1,4 +1,4 @@
-#!/bin/zsh 
+#!/bin/zsh -l 
 cd /afs/cern.ch/user/a/ahgit/cmssw
 cmsrel CMSSW_13_0_10
 cd CMSSW_13_0_10/src
