@@ -6,7 +6,9 @@ pipeline {
     stage('Set up CMSSW environment') {
       steps {
 	dir('python1') {
-	sh './setup_cmssw.sh'
+	sh '''#!/bin/zsh -l
+	./setup_cmssw.sh
+	'''
       	}
       }
     }
