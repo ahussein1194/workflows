@@ -5,7 +5,7 @@ pipeline {
   stages {
     stage('version') {
       steps {
-        sh 'python --version'
+        sh 'python3 --version'
       }
     }
     stage('PWD') {
@@ -18,6 +18,11 @@ pipeline {
 	dir('python1') {
         sh 'python3 hello.py'
         }
+      }
+    }
+    stage('Mkdir') {
+      steps {
+        sh 'mkdir new_dir'
       }
     }
   }
