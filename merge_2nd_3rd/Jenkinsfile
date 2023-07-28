@@ -21,5 +21,14 @@ stage('2nd step: calculate efficiency') {
         }
       }
     }
+stage('3nd step: make efficiency summary') {
+      steps {
+        dir('merge_2nd_3rd') {
+        sh '''
+        ./3rd.sh
+        '''
+        }
+      }
+    }
   }
 }
