@@ -1,0 +1,15 @@
+pipeline {
+  agent {
+      label 'lxplus'
+  }
+  stages {
+    stage('Merge the output files') {
+      steps {
+	dir('merge_2nd_3rd') {
+	sh '''
+	./merge.sh
+	'''
+      	}
+      }
+    }
+  }
