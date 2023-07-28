@@ -5,10 +5,8 @@ pipeline {
   stages {
     stage('Set up CMSSW environment') {
       steps {
-        sh "
-	cd /afs/cern.ch/user/a/ahgit/cmssw
-	cmsrel CMSSW_13_0_10
-	   "
+        sh 'cd /afs/cern.ch/user/a/ahgit/cmssw
+	sh 'cmsrel CMSSW_13_0_10'
       }
     }
   }
