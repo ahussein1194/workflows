@@ -5,9 +5,10 @@ pipeline {
   stages {
     stage('Set up CMSSW environment') {
       steps {
-	sh 'source ~/.zshrc'
         sh 'cd /afs/cern.ch/user/a/ahgit/cmssw'
-	sh 'cmsrel CMSSW_13_0_10'
+	sh '''#!/bin/zsh -l
+	cmsrel CMSSW_13_0_10
+	'''
       }
     }
   }
