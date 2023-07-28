@@ -1,0 +1,15 @@
+pipeline {
+  agent {
+      label 'lxplus'
+  }
+  stages {
+    stage('Set up CMSSW environment') {
+      steps {
+        sh "
+	cd /afs/cern.ch/user/a/ahgit/cmssw
+	cmsrel CMSSW_13_0_10
+	   "
+      }
+    }
+  }
+}
