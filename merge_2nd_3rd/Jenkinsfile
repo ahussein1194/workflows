@@ -12,5 +12,14 @@ pipeline {
       	}
       }
     }
+stage('2nd step: calculate efficiency') {
+      steps {
+        dir('merge_2nd_3rd') {
+        sh '''
+        ./2nd.sh
+        '''
+        }
+      }
+    }
   }
 }
