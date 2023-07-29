@@ -3,33 +3,36 @@ pipeline {
       label 'lxplus'
   }
   parameters {
-	string(name: 'run_number', defaultValue: '')
+	integer(name: 'run_number', defaultValue: '')
   }
   stages {
     stage('Merge the output files') {
       steps {
 	dir('merge_2nd_3rd_opt') {
-	sh '''
-	./merge.sh ${env.run_number}
-	'''
+	sh """
+ 	int run = ${env.run_number}
+	./merge.sh run
+	"""
       	}
       }
     }
 stage('2nd step: calculate efficiency') {
       steps {
         dir('merge_2nd_3rd_opt') {
-        sh '''
-        ./2nd.sh ${env.run_number}
-        '''
+        sh """
+	int run = ${env.run_number}
+        ./2nd.sh run
+        """
         }
       }
     }
 stage('3nd step: make efficiency summary') {
       steps {
         dir('merge_2nd_3rd_opt') {
-        sh '''
-        ./3rd.sh ${env.run_number}
-        '''
+        sh """
+	int run = ${env.run_number}
+        ./3rd.sh run
+        """
         }
       }
     }
