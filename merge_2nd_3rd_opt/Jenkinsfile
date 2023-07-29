@@ -10,9 +10,9 @@ pipeline {
       steps {
 	dir('merge_2nd_3rd_opt') {
 	script {
-	run=params.run_number
-	echo $run
-	}
+	def run = params.run_number
+	sh "echo $run"
+	  }
       	}
       }
     }
