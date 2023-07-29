@@ -3,7 +3,7 @@ pipeline {
       label 'lxplus'
   }
   parameters {
-	integer(name: 'run_number', defaultValue: '')
+	string(name: 'run_number', defaultValue: '')
   }
   stages {
     stage('Merge the output files') {
