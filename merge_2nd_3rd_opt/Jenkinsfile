@@ -11,7 +11,7 @@ pipeline {
 	dir('merge_2nd_3rd_opt') {
 	script {
 	def run = params.run_number
-	sh "echo $run"
+	sh "./merge.sh $run"
 	  }
       	}
       }
@@ -19,20 +19,20 @@ pipeline {
 stage('2nd step: calculate efficiency') {
       steps {
         dir('merge_2nd_3rd_opt') {
-        sh """
-	run=${params.run_number}
-        ./2nd.sh ${run}
-        """
+        script {
+	def run = params.run_number
+        sh "./2nd.sh $run"
+          }
         }
       }
     }
 stage('3nd step: make efficiency summary') {
       steps {
         dir('merge_2nd_3rd_opt') {
-        sh """
-	run=${params.run_number}
-        ./3rd.sh ${run}
-        """
+        script {
+	def run = params.run_number
+        sh "./3rd.sh $run"
+          }
         }
       }
     }
