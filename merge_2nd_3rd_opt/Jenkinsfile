@@ -11,7 +11,6 @@ pipeline {
 	dir('merge_2nd_3rd_opt') {
 	sh """
  	echo "${env.run_number}"
-	./merge.sh ${run}
 	"""
       	}
       }
