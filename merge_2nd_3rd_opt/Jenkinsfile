@@ -10,7 +10,7 @@ pipeline {
       steps {
 	dir('merge_2nd_3rd_opt') {
 	sh """
- 	int run = ${env.run_number}
+ 	run = ${env.run_number}
 	./merge.sh run
 	"""
       	}
@@ -20,7 +20,7 @@ stage('2nd step: calculate efficiency') {
       steps {
         dir('merge_2nd_3rd_opt') {
         sh """
-	int run = ${env.run_number}
+	run = ${env.run_number}
         ./2nd.sh run
         """
         }
@@ -30,7 +30,7 @@ stage('3nd step: make efficiency summary') {
       steps {
         dir('merge_2nd_3rd_opt') {
         sh """
-	int run = ${env.run_number}
+	run = ${env.run_number}
         ./3rd.sh run
         """
         }
