@@ -9,10 +9,10 @@ pipeline {
     stage('Merge the output files') {
       steps {
 	dir('merge_2nd_3rd_opt') {
-	sh """
+	script {
 	def run="${env.run_number}"
  	echo ${run}
-	"""
+	}
       	}
       }
     }
