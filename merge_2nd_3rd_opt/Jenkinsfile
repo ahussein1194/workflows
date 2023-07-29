@@ -3,7 +3,7 @@ pipeline {
       label 'lxplus'
   }
   parameters {
-	password(name: 'run_number', defaultValue: '')
+	string(name: 'run_number', defaultValue: '')
   }
   stages {
     stage('Merge the output files') {
@@ -11,6 +11,7 @@ pipeline {
 	dir('merge_2nd_3rd_opt') {
 	sh """
  	run=${env.run_number}
+	echo ${run}
 	./merge.sh ${run}
 	"""
       	}
