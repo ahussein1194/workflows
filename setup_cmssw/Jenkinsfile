@@ -1,0 +1,16 @@
+pipeline {
+  agent {
+      label 'lxplus'
+  }
+  stages {
+    stage('Setup CMSSW Environment') {
+      steps {
+	dir('setup_cmssw') {
+	sh '''
+	./setup_cmssw.sh
+	'''
+      	}
+      }
+    }
+  }
+}
