@@ -8,4 +8,4 @@ cluster_id=$(grep -o -P '(?<=cluster ).*?(?=\.)' submit_result.txt)
 sleep 10
 condor_q $cluster_id > condor_query.txt
 jobs_remaining=$(grep -o -P '(?<=Total for query: ).*?(?= jobs)' condor_query.txt)
-echo "#Remaining jobs: " $jobs_done
+echo "#Remaining jobs: " $jobs_remaining
