@@ -1,0 +1,16 @@
+pipeline {
+  agent {
+      label 'lxplus'
+  }
+  stages {
+    stage('Submit condor') {
+      steps {
+	dir('1st-step') {
+	script {
+	sh "./submit_condor.sh"
+	  }
+      	}
+      }
+    }
+  }
+}
