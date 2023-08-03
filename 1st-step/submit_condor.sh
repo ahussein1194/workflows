@@ -33,3 +33,4 @@ while [ resubmit_to_condor ]; do
 		echo "Some files were not transferred successfully!"
 		resubmit_to_condor=true
 	fi
+done
