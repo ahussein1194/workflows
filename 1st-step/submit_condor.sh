@@ -32,7 +32,7 @@ while [ "$resubmit_to_condor" = true ]; do
 		echo "First step of analysis suceeded! [trial $condor_trials_count/3]."
 		resubmit_to_condor=false
 	else
-		if [ "$condor_trials_count" -lt 2 ]; then
+		if [ "$condor_trials_count" -lt 1 ]; then
 			((condor_trials_count++))
 			echo "Some files were not transferred successfully, resubmitting to condor [trial $condor_trials_count/3]."
 			resubmit_to_condor=true
@@ -40,7 +40,6 @@ while [ "$resubmit_to_condor" = true ]; do
 			echo "Some files were not transferred successfully. First step failed!"
                         resubmit_to_condor=false
 			# Set build status to FAILURE.
-			currentBuild.result = 'FAILURE'
 			error('Some files were not transferred successfully!')
 		fi
 
