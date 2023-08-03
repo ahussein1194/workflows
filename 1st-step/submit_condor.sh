@@ -1,5 +1,5 @@
 #!/bin/zsh -l 
-resubmit_to_condor = true
+resubmit_to_condor=true
 while [ resubmit_to_condor ]; do
 	cd /afs/cern.ch/user/a/ahgit/cmssw/CMSSW_13_0_10/src
 	cmsenv
@@ -28,8 +28,8 @@ while [ resubmit_to_condor ]; do
 	transferred_jobs=$(ls | wc -l)
 	if [ "$num_submitted_jobs" = "$transferred_jobs" ]; then
 		echo "All files transferred successfully!"
-		resubmit_to_condor = false
+		resubmit_to_condor=false
 	else
 		echo "Some files were not transferred successfully!"
-		resubmit_to_condor = true
+		resubmit_to_condor=true
 	fi
