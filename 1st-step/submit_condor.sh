@@ -1,6 +1,6 @@
 #!/bin/zsh -l 
 resubmit_to_condor=true
-while [ resubmit_to_condor ]; do
+while [ "$resubmit_to_condor" = true ]; do
 	cd /afs/cern.ch/user/a/ahgit/cmssw/CMSSW_13_0_10/src
 	cmsenv
 	cd DQM/RPCMonitorModule/test/condor/Express_Cosmics
