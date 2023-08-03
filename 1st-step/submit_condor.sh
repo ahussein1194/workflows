@@ -5,6 +5,9 @@ while [ "$resubmit_to_condor" = true ]; do
 	cd /afs/cern.ch/user/a/ahgit/cmssw/CMSSW_13_0_10/src
 	cmsenv
 	cd DQM/RPCMonitorModule/test/condor/Express_Cosmics
+	# Clean dir.
+        rm -rf submit_result.txt
+        rm -rf condor_query.txt
 	./submit_condor.sh 371 208 > submit_result.txt
 	cat submit_result.txt
 	num_submitted_jobs=$(grep -o -P '\d+(?= job\(s\))' submit_result.txt)
@@ -32,7 +35,7 @@ while [ "$resubmit_to_condor" = true ]; do
 		echo "First step of analysis suceeded! [trial $condor_trials_count/3]."
 		resubmit_to_condor=false
 	else
-		if [ "$condor_trials_count" -lt 1 ]; then
+		if [ "$condor_trials_count" -lt 3 ]; then
 			((condor_trials_count++))
 			echo "Some files were not transferred successfully, resubmitting to condor [trial $condor_trials_count/3]."
 			resubmit_to_condor=true
