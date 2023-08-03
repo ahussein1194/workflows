@@ -40,8 +40,7 @@ while [ "$resubmit_to_condor" = true ]; do
 			echo "Some files were not transferred successfully. First step failed!"
                         resubmit_to_condor=false
 			# Set build status to FAILURE.
-			currentBuild.result = 'FAILURE'
-			error('Custom FAILURE condition met')
+			exit 1
 		fi
 
 	fi

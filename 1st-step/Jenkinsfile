@@ -6,10 +6,8 @@ pipeline {
     stage('Submit condor') {
       steps {
 	dir('1st-step') {
-	catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 	  script {
 	     sh "./submit_condor.sh"
-	  }
 	 }
       	}
       }
