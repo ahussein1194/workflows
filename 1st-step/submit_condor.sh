@@ -1,5 +1,6 @@
 #!/bin/zsh -l 
 resubmit_to_condor=true
+condor_trials_count=1
 while [ "$resubmit_to_condor" = true ]; do
 	cd /afs/cern.ch/user/a/ahgit/cmssw/CMSSW_13_0_10/src
 	cmsenv
@@ -28,9 +29,20 @@ while [ "$resubmit_to_condor" = true ]; do
 	transferred_jobs=$(ls | wc -l)
 	if [ "$num_submitted_jobs" = "$transferred_jobs" ]; then
 		echo "All files transferred successfully!"
+		echo "First step of analysis suceeded! [trial $condor_trials_count/3]."
 		resubmit_to_condor=false
 	else
-		echo "Some files were not transferred successfully!"
-		resubmit_to_condor=true
+		if [ "$condor_trials_count" -lt 2 ]; then
+			((condor_trials_count++))
+			echo "Some files were not transferred successfully, resubmitting to condor [trial $condor_trials_count/3]."
+			resubmit_to_condor=true
+		else
+			echo "Some files were not transferred successfully. First step failed!"
+                        resubmit_to_condor=false
+			# Set build status to FAILURE.
+			currentBuild.result = 'FAILURE'
+			error('Some files were not transferred successfully!')
+		fi
+
 	fi
 done
