@@ -6,7 +6,7 @@ while [ resubmit_to_condor ]; do
 	cd DQM/RPCMonitorModule/test/condor/Express_Cosmics
 	./submit_condor.sh 371 208 > submit_result.txt
 	cat submit_result.txt
-	num_submitted_jobs=grep -o -P '\d+(?= job\(s\))' submit_result.txt
+	num_submitted_jobs=$(grep -o -P '\d+(?= job\(s\))' submit_result.txt)
 	cluster_id=$(grep -o -P '(?<=cluster ).*?(?=\.)' submit_result.txt)
 	condor_q $cluster_id > condor_query.txt
 	jobs_remaining=$(grep -o -P '(?<=Total for query: ).*?(?= jobs)' condor_query.txt)
