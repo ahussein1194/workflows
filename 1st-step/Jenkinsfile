@@ -3,7 +3,17 @@ pipeline {
       label 'lxplus'
   }
   stages {
-    stage('Submit condor') {
+    stage('Initialization') {
+      steps {
+        dir('1st-step') {
+          mattermostSend (
+		color: "#2A42EE",
+	 	message: "Build STARTED: ${env.JOB_NAME} ${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
+	  )
+        }
+      }
+    }
+    stage('Submit to condor') {
       steps {
 	dir('1st-step') {
 	  script {
