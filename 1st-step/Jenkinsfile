@@ -22,5 +22,22 @@ pipeline {
       	}
       }
     }
+   stage('Finalization') {
+     steps {
+        script {
+           if(currentBuild.result == "FAILURE") {
+                 mattermostSend (
+                       color: "danger", 
+                        message: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
+                 )
+           } else {
+                 mattermostSend (
+                       color: "good", 
+                         message: "Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
+                 )
+          }
+        }
+      }
+    }
   }
 }
