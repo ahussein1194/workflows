@@ -3,7 +3,7 @@ pipeline {
       label 'lxplus'
   }
   parameters {
-     string(name: 'RunNumber [ex: 370208]', defaultValue: '')
+     string(name: 'RunNumber', defaultValue: '')
   }
   environment {
         def run_number1 = params.RunNumber.substring(0, 3)
