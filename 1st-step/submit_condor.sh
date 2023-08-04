@@ -17,7 +17,7 @@ while [ "$resubmit_to_condor" = true ]; do
 		echo "Submission failed. No jobs were submitted!"
 		mattermostSend \
 			color:"danger" \
-			message:"Build FAILED: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
+			message:"Build FAILED"
 		exit 1
 	fi
 	# Get the number of submitted jobs.
