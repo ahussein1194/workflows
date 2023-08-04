@@ -29,7 +29,7 @@ pipeline {
             script {
                 // Send a Mattermost notification when the build succeeds.
                 mattermostSend(
-                    color: '#00FF00',
+                    color: 'good',
                     message: "Build SUCCESS: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
                 )
             }
@@ -39,7 +39,7 @@ pipeline {
             script {
                 // Send a Mattermost notification when the build fails.
                 mattermostSend(
-                    color: '#FF5733',
+                    color: 'danger',
                     message: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
                 )
             }
