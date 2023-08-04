@@ -6,33 +6,33 @@ while [ "$resubmit_to_condor" = true ]; do
 	cmsenv
 	cd DQM/RPCMonitorModule/test/condor/Express_Cosmics
 	# Clean dir.
-        rm -rf submit_result.txt
-        rm -rf condor_query.txt
-	./submit_condor.sh ${1} ${2} > submit_result.txt
-	cat submit_result.txt
-	cluster_id=$(grep -o -P '(?<=cluster ).*?(?=\.)' submit_result.txt)
+        rm -rf submitResult_${1}${2}.txt
+        rm -rf condorQuery_${1}${2}.txt
+	./submit_condor.sh ${1} ${2} > submitResult_${1}${2}.txt
+	cat submitResult_${1}${2}.txt
+	cluster_id=$(grep -o -P '(?<=cluster ).*?(?=\.)' submitResult_${1}${2}.txt)
 	# Check if condor submission failed.
 	if [ "$cluster_id" = "" ]; then
-		rm -rf submit_result.txt
+		rm -rf submitResult_${1}${2}.txt
 		echo "Submission failed. No jobs were submitted!"
 		exit 1
 	fi
 	# Get the number of submitted jobs.
-	num_submitted_jobs=$(grep -o -P '\d+(?= job\(s\))' submit_result.txt)
-	condor_q $cluster_id > condor_query.txt
-	jobs_remaining=$(grep -o -P '(?<=Total for query: ).*?(?= jobs)' condor_query.txt)
+	num_submitted_jobs=$(grep -o -P '\d+(?= job\(s\))' submitResult_${1}${2}.txt)
+	condor_q $cluster_id > condorQuery_${1}${2}.txt
+	jobs_remaining=$(grep -o -P '(?<=Total for query: ).*?(?= jobs)' condorQuery_${1}${2}.txt)
 
 	# Check that condor run finished.
 	while [ "$jobs_remaining" -ne 0 ]; do
 		sleep 5
-		condor_q $cluster_id > condor_query.txt
-		cat condor_query.txt
-		jobs_remaining=$(grep -o -P '(?<=Total for query: ).*?(?= jobs)' condor_query.txt)
+		condor_q $cluster_id > condorQuery_${1}${2}.txt
+		cat condorQuery_${1}${2}.txt
+		jobs_remaining=$(grep -o -P '(?<=Total for query: ).*?(?= jobs)' condorQuery_${1}${2}.txt)
 	done
 
 	# Clean dir.
-	rm -rf submit_result.txt
-	rm -rf condor_query.txt
+	rm -rf submitResult_${1}${2}.txt
+	rm -rf condorQuery_${1}${2}.txt
 	
 	# Check that all jobs were transferred successfully.
 	cd run_${1}${2}/output_${1}${2}
