@@ -6,6 +6,8 @@ pipeline {
     stage('Initialization') {
       steps {
         dir('1st-step') {
+	  buildName "Run371208"
+          buildDescription "Segment Extraolation analysis for run ${env.BUILD_DISPLAY_NAME} executed @ ${NODE_NAME}"
           mattermostSend (
 		color: "#2A42EE",
 	 	message: "Build STARTED: ${env.JOB_NAME} ${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
