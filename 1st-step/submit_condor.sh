@@ -15,9 +15,6 @@ while [ "$resubmit_to_condor" = true ]; do
 	if [ "$cluster_id" = "" ]; then
 		rm -rf submit_result.txt
 		echo "Submission failed. No jobs were submitted!"
-		mattermostSend \
-			color:"danger" \
-			message:"Build FAILED"
 		exit 1
 	fi
 	# Get the number of submitted jobs.
