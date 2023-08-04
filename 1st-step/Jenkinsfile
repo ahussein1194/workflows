@@ -18,6 +18,11 @@ pipeline {
 	dir('1st-step') {
 	  script {
 	     sh "./submit_condor.sh"
+	     if(currentBuild.result == "FAILURE") {
+                 mattermostSend (
+                       color: "danger",
+                        message: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
+                 )
 	 }
       	}
       }
