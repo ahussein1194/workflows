@@ -1,0 +1,57 @@
+pipeline {
+  agent {
+      label 'lxplus'
+  }
+  parameters {
+     string(name: 'RunNumber [ex: 370208]', defaultValue: '')
+  }
+  environment {
+        def run_number1 = params.RunNumber.substring(0, 3)
+        def run_number2 = params.RunNumber.substring(3, 6)
+  }
+  stages {
+    stage('Initialization') {
+      steps {
+        dir('1st-step') {
+	  buildName "Run${env.RunNumber}"
+          buildDescription "Segment Extraolation analysis for run ${env.BUILD_DISPLAY_NAME} executed @ ${NODE_NAME}"
+          mattermostSend (
+		color: "#2A42EE",
+	 	message: "Build STARTED: ${env.JOB_NAME} (<${env.BUILD_URL}|${env.BUILD_DISPLAY_NAME}>)"
+	  )
+        }
+      }
+    }
+    stage('Submit to condor') {
+      steps {
+	dir('1st-step') {
+	  script {
+	     sh "./submit_condor.sh"
+	 }
+      	}
+      }
+    }
+  }
+
+ post {
+        success {
+            script {
+                // Send a Mattermost notification when the build succeeds.
+                mattermostSend(
+                    color: 'good',
+                    message: "Build SUCCESS: ${env.JOB_NAME} (<${env.BUILD_URL}|${env.BUILD_DISPLAY_NAME}>)"
+                )
+            }
+        }
+        
+        failure {
+            script {
+                // Send a Mattermost notification when the build fails.
+                mattermostSend(
+                    color: 'danger',
+                    message: "Build FAILED: ${env.JOB_NAME} (<${env.BUILD_URL}|${env.BUILD_DISPLAY_NAME}>)"
+                )
+            }
+        }
+    }
+}
