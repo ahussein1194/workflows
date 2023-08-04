@@ -8,7 +8,7 @@ while [ "$resubmit_to_condor" = true ]; do
 	# Clean dir.
         rm -rf submit_result.txt
         rm -rf condor_query.txt
-	./submit_condor.sh 371 208 > submit_result.txt
+	./submit_condor.sh ${1} ${2} > submit_result.txt
 	cat submit_result.txt
 	cluster_id=$(grep -o -P '(?<=cluster ).*?(?=\.)' submit_result.txt)
 	# Check if condor submission failed.
@@ -35,7 +35,7 @@ while [ "$resubmit_to_condor" = true ]; do
 	rm -rf condor_query.txt
 	
 	# Check that all jobs were transferred successfully.
-	cd run_371208/output_371208
+	cd run_${1}${2}/output_${1}${2}
 	transferred_jobs=$(ls | wc -l)
 	if [ "$num_submitted_jobs" = "$transferred_jobs" ]; then
 		echo "All files transferred successfully!"

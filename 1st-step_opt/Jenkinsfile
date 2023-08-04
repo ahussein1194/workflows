@@ -14,7 +14,7 @@ pipeline {
       steps {
         dir('1st-step_opt') {
 	  buildName "Run${env.RunNumber}"
-          buildDescription "Segment Extraolation analysis for run ${env.BUILD_DISPLAY_NAME} executed @ ${NODE_NAME}"
+          buildDescription "Segment Extraolation analysis for ${env.BUILD_DISPLAY_NAME} executed @ ${NODE_NAME}"
           mattermostSend (
 		color: "#2A42EE",
 	 	message: "Build STARTED: ${env.JOB_NAME} (<${env.BUILD_URL}|${env.BUILD_DISPLAY_NAME}>)"
@@ -26,7 +26,7 @@ pipeline {
       steps {
 	dir('1st-step_opt') {
 	  script {
-	     sh "./submit_condor.sh"
+	     sh "./submit_condor.sh ${run_number1} ${run_number2}"
 	 }
       	}
       }
