@@ -12,7 +12,7 @@ pipeline {
   stages {
     stage('Initialization') {
       steps {
-        dir('1st-step') {
+        dir('1st-step_opt') {
 	  buildName "Run${env.RunNumber}"
           buildDescription "Segment Extraolation analysis for run ${env.BUILD_DISPLAY_NAME} executed @ ${NODE_NAME}"
           mattermostSend (
@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Submit to condor') {
       steps {
-	dir('1st-step') {
+	dir('1st-step_opt') {
 	  script {
 	     sh "./submit_condor.sh"
 	 }
