@@ -13,6 +13,7 @@ while [ "$resubmit_to_condor" = true ]; do
 	cluster_id=$(grep -o -P '(?<=cluster ).*?(?=\.)' submit_result.txt)
 	# Check if condor submission failed.
 	if [ "$cluster_id" = "" ]; then
+		rm -rf submit_result.txt
 		echo "Submission failed. No jobs were submitted!"
 		exit 1
 	fi
