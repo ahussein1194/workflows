@@ -23,6 +23,7 @@ pipeline {
                        color: "danger",
                         message: "Build FAILED: ${env.JOB_NAME} #${env.BUILD_DISPLAY_NAME} (<${env.BUILD_URL}|Link to build>)"
                  )
+          }
 	 }
       	}
       }
