@@ -39,7 +39,7 @@ pipeline {
                 // Send a Mattermost notification when the build succeeds.
                 mattermostSend(
                     color: 'good',
-                    message: "Build SUCCESS: ${env.JOB_NAME} (<${env.BUILD_URL}|${env.BUILD_DISPLAY_NAME}>)"
+                    message: "Build SUCCESS: ${env.JOB_NAME} (<${env.BUILD_URL}|${env.BUILD_DISPLAY_NAME}>). You can find the plots at (<https://cernbox.cern.ch/files/spaces/eos/user/a/ahgit/rpc_workspace/plots/run_${run_number1}${run_number2}|plots>)"
                 )
             }
         }
