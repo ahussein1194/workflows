@@ -13,3 +13,7 @@ cp /afs/cern.ch/user/a/ahgit/cmssw/CMSSW_13_0_10/src/DQM/RPCMonitorModule/test/c
 python3 Construct_bChambers.py
 summaryFile_name="SummaryAnalyzeEfficiency_${1}${2}_Express2023.root"
 root -l -b -q "drawEfficiencyHistograms.C(true, true, 1, \"$summaryFile_name\")"
+mkdir /eos/user/a/ahgit/rpc_workspace/plots/run_${1}${2}
+cp *.png /eos/user/a/ahgit/rpc_workspace/plots/run_${1}${2}
+cd ../
+rm -rf plots_${1}${2}
