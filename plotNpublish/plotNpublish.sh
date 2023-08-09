@@ -1,5 +1,6 @@
 #!/bin/zsh -l 
 cd /afs/cern.ch/user/a/ahgit/cmssw/CMSSW_13_0_10/src/DQM/RPCMonitorModule/macros
+rm -rf plots_${1}${2}
 mkdir plots_${1}${2}
 cd plots_${1}${2}
 cp -r ../Chamber_Issues .
