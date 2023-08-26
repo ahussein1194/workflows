@@ -3,7 +3,7 @@ pipeline {
       label 'lxplus'
     }
       environment {
-        GITLAB_TOKEN = credentials('GitLabToken')
+        GITLAB_TOKEN = credentials('gitlab-apitoken')
     }
 
   stages {
