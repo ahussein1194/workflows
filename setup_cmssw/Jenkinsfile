@@ -8,7 +8,6 @@ pipeline {
       steps {
 	dir('setup_cmssw') {
 	script{
-	def sshKeyCredentialId = 'GitLabSSH'
 	sh './setup_cmssw.sh'
 	  }
       	}
