@@ -1,14 +1,18 @@
 pipeline {
   agent {
       label 'lxplus'
+
+      environment {
+        GITLAB_TOKEN = credentials('GitLabToken')
+    }
   }
   stages {
     stage('Setup CMSSW Environment') {
       steps {
 	dir('setup_cmssw') {
-	sh '''
-	./setup_cmssw.sh
-	'''
+	script{
+	sh './setup_cmssw.sh'
+	  }
       	}
       }
     }
