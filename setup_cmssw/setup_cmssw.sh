@@ -6,4 +6,5 @@ cd CMSSW_13_0_9/src
 cmsenv
 source /cvmfs/cms.cern.ch/crab3/crab.sh
 git cms-addpkg RecoLocalMuon/RPCRecHit
-git clone -b run3_offlineAna_12_5_1 https://gitlab.cern.ch/CMSRPCDPG/OfflineRPCEfficiency.git -c http.extraheader="PRIVATE-TOKEN: $GITLAB_TOKEN" 
+#git clone -b run3_offlineAna_12_5_1 https://gitlab.cern.ch/CMSRPCDPG/OfflineRPCEfficiency.git 
+ssh-agent bash -c 'ssh-add ${sshKeyCredentialId} && git clone -b run3_offlineAna_12_5_1 https://gitlab.cern.ch/CMSRPCDPG/OfflineRPCEfficiency.git'
