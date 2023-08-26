@@ -1,5 +1,6 @@
 #!/bin/zsh -l 
 cd /afs/cern.ch/user/a/ahgit/cmssw
+rm -rf CMSSW_13_0_9
 cmsrel CMSSW_13_0_9
 cd CMSSW_13_0_9/src
 cmsenv
