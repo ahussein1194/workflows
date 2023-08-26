@@ -1,7 +1,7 @@
 pipeline {
   agent {
       label 'lxplus'
-
+    }
       environment {
         GITLAB_TOKEN = credentials('GitLabToken')
     }
